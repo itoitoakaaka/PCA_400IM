@@ -1,6 +1,9 @@
 function w400im
-    % ファイルパスを定義
-    file_path = '/Users/itoakane/Matlabfile/w400im.xlsx';
+    % ファイルパスを定義（スクリプトと同じディレクトリにデータを配置）
+    file_path = fullfile(fileparts(mfilename('fullpath')), 'data', 'w400im.xlsx');
+    if ~isfile(file_path)
+        error('データファイルが見つかりません: %s\ndata/ フォルダに w400im.xlsx を配置してください。', file_path);
+    end
 
     % エクセルファイルを読み込む
     data = readtable(file_path, 'VariableNamingRule', 'preserve');

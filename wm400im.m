@@ -1,5 +1,9 @@
-% エクセルファイルの読み込み
-data = readtable('/Users/itoakane/Matlabfile/400im.xlsx');
+% エクセルファイルの読み込み（スクリプトと同じディレクトリのdata/フォルダから）
+file_path = fullfile(fileparts(mfilename('fullpath')), 'data', '400im.xlsx');
+if ~isfile(file_path)
+    error('データファイルが見つかりません: %s\ndata/ フォルダに 400im.xlsx を配置してください。', file_path);
+end
+data = readtable(file_path);
 
 % タイムデータの抽出
 features = data.totalTime;
